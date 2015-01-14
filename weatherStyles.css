@@ -1,0 +1,70 @@
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+/*
+Lato:
+100 = thin
+300 = light
+400 = normal
+700 = bold
+900 = ultra-bold
+*/
+
+body {
+	font-size: 14px;
+	font-family: Lato, Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	line-height: 1.2;
+	color: #808080;
+}
+.currentWeatherContain {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 120px;
+}
+#currentWeatherIcon {
+	display: block;
+	width: 800px;
+	height: 500px;
+	border: 2px solid salmon;
+}
+.currentWeatherInfo {
+	line-height: 140px;
+	font-size: 120px;
+	font-weight: 700;
+	text-align: center;
+	margin-left: 150px;
+}
+.forecastList {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 15px;
+	left: 0;
+	right: 0;
+}
+.forecastList > div {
+	display: block;
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+.forecastList h1 {
+	font-size: 40px;
+	font-weight: 700;
+	text-transform: lowercase;
+}
+.forecastList h2 {
+	font-size: 40px;
+	font-weight: 300;
+}
+.forecastList .weatherIcon {
+	display: inline-block;
+	width: 180px;
+	height: 180px;
+	background: #eee;
+	margin-top: 20px;
+}

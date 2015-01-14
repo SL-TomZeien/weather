@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>shoplocal weather</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js"></script>
+	<script src="jquery.simpleWeather.js"></script>
+	<link rel="stylesheet" type="text/css" href="reset.css"/>
+	<link rel="stylesheet" type="text/css" href="weatherStyles.css"/>
+</head>
+<body>
+	<div id="weather"> <!-- this ID needed for the plugin */ -->
+		<div class="group currentWeatherContain">
+			<div id="currentWeatherIcon"></div>
+			<div class="currentWeatherInfo">
+				<h2 id="cityName">City</h2>
+				<h3 id="currentTemp">xx&deg;</h3>
+			</div>
+		</div>
+		<div class="forecastList">
+			<div>
+				<h1 id="dayOne">tuesday</h1>
+				<h2 id="temperatureDayOne">xx&deg;/xx&deg;</h2>
+				<div id="weatherIconOne" class="weatherIcon"></div>
+			</div>
+			<div>
+				<h1 id="dayTwo">tuesday</h1>
+				<h2 id="temperatureDayTwo">xx&deg;/xx&deg;</h2>
+				<div id="weatherIconTwo" class="weatherIcon"></div>
+			</div>
+			<div>
+				<h1 id="dayThree">tuesday</h1>
+				<h2 id="temperatureDayThree">xx&deg;/xx&deg;</h2>
+				<div id="weatherIconThree" class="weatherIcon"></div>
+			</div>
+			<div>
+				<h1 id="dayFour">tuesday</h1>
+				<h2 id="temperatureDayFour">xx&deg;/xx&deg;</h2>
+				<div id="weatherIconFour" class="weatherIcon"></div>
+			</div>
+			<div>
+				<h1 id="dayFive">tuesday</h1>
+				<h2 id="temperatureDayFive">xx&deg;/xx&deg;</h2>
+				<div id="weatherIconFive" class="weatherIcon"></div>
+			</div>
+		</div>
+	</div>
+
+    <script>
+		$(document).ready(function() {
+		  $.simpleWeather({
+			woeid: '', //2357536
+			location: 'Chicago, IL',
+			unit: 'f',
+			success: function(weather) {
+
+				//set the weekday array with the 3-digit forecast day names (ex. "Mon")
+				var weekday = new Array(5); 
+			    weekday[0] = weather.forecast[0].day;
+			    weekday[1] = weather.forecast[1].day;
+			    weekday[2] = weather.forecast[2].day;
+			    weekday[3] = weather.forecast[3].day;
+			    weekday[4] = weather.forecast[4].day;
+
+		    	//swap out full day name with the 3-digit day name
+				for(var i=0;i<weekday.length;i++) { 
+					if (weekday[i] == "Mon") {
+						weekday[i] = "Monday";
+					}
+					else if (weekday[i] == "Tue") {
+						weekday[i] = "Tuesday";
+					}
+					else if (weekday[i] == "Wed") {
+						weekday[i] = "Wednesday";
+					}
+					else if (weekday[i] == "Thu") {
+						weekday[i] = "Thursday";
+					}
+					else if (weekday[i] == "Fri") {
+						weekday[i] = "Friday";
+					}
+					else if (weekday[i] == "Sat") {
+						weekday[i] = "Saturday";
+					}
+					else if (weekday[i] == "Sun") {
+						weekday[i] = "Sunday";
+					}
+				}
+
+
+				document.getElementById('currentWeatherIcon').innerHTML = "<img src='images/weatherIcons/"+weather.code+"'/>";
+				document.getElementById('cityName').innerHTML = weather.city;
+				document.getElementById('currentTemp').innerHTML = weather.temp+'&deg;';
+
+				document.getElementById('dayOne').innerHTML = weekday[0];
+				document.getElementById('dayTwo').innerHTML = weekday[1];
+				document.getElementById('dayThree').innerHTML = weekday[2];
+				document.getElementById('dayFour').innerHTML = weekday[3];
+				document.getElementById('dayFive').innerHTML = weekday[4];
+
+				document.getElementById('temperatureDayOne').innerHTML = weather.forecast[0].high+"&deg;/"+weather.forecast[0].low+"&deg;";
+				document.getElementById('temperatureDayTwo').innerHTML = weather.forecast[1].high+"&deg;/"+weather.forecast[1].low+"&deg;";
+				document.getElementById('temperatureDayThree').innerHTML = weather.forecast[2].high+"&deg;/"+weather.forecast[2].low+"&deg;";
+				document.getElementById('temperatureDayFour').innerHTML = weather.forecast[3].high+"&deg;/"+weather.forecast[3].low+"&deg;";
+				document.getElementById('temperatureDayFive').innerHTML = weather.forecast[4].high+"&deg;/"+weather.forecast[4].low+"&deg;";
+
+				document.getElementById('weatherIconOne').innerHTML = "<img src='images/weatherIcons/"+weather.forecast[0].code+"'/>";
+				document.getElementById('weatherIconTwo').innerHTML = "<img src='images/weatherIcons/"+weather.forecast[1].code+"'/>";
+				document.getElementById('weatherIconThree').innerHTML = "<img src='images/weatherIcons/"+weather.forecast[2].code+"'/>";
+				document.getElementById('weatherIconFour').innerHTML = "<img src='images/weatherIcons/"+weather.forecast[3].code+"'/>";
+				document.getElementById('weatherIconFive').innerHTML = "<img src='images/weatherIcons/"+weather.forecast[4].code+"'/>";
+		  
+			  $("#weather").html(html);
+			},
+			error: function(error) {
+			  $("#weather").html('<p>'+error+'</p>');
+			}
+		  });
+		});
+    </script>
+
+
+</body>
+</html>
