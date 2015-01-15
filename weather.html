@@ -20,20 +20,20 @@
 				<h2 id="cityName">City</h2>
 				<h3 id="currentTemp">xx&deg;</h3>
 				<section class="extraInfo">
-					<p><h1>high:</h1> <span id="currentHigh"></span></p>
-					<p><h1>low:</h1> <span id="currentLow"></span></p>
+					<p><h1>high:</h1> <span id="currentHigh"></span>&deg; (<span id="currentHighAlt"></span>&deg;<span id="currentHighAltUnit"></span>)</p>
+					<p><h1>low:</h1> <span id="currentLow"></span>&deg; (<span id="currentLowAlt"></span>&deg;<span id="currentLowAltUnit"></span>)</p>
 
 					<p><h1>sunrise:</h1> <span id="currentSunrise"></span></p>
 					<p><h1>sunset:</h1> <span id="currentSunset"></span></p>
 
-					<p><h1>wind chill:</h1> <span id="currentWindChill"></span></p>
+					<p><h1>wind chill:</h1> <span id="currentWindChill"></span>&deg;</p>
 					<p><h1>wind direction:</h1> <span id="currentWindDirection"></span></p>
-					<p><h1>wind speed:</h1> <span id="currentWindSpeed"></span></p>
+					<p><h1>wind speed:</h1> <span id="currentWindSpeed"></span><span id="currentWindSpeedUnit"></span></p>
 
-					<p><h1>humidity:</h1> <span id="currentHumidity"></span></p>
+					<p><h1>humidity:</h1> <span id="currentHumidity"></span>%</p>
 					<p><h1>heat index:</h1> <span id="currentHeatIndex"></span></p>
-					<p><h1>pressure:</h1> <span id="currentPressure"></span> (<span id="currentRising"></span>)</p>
-					<p><h1>visibility:</h1> <span id="currentVisibility"></span></p>
+					<p><h1>pressure:</h1> <span id="currentPressure"></span><span id="currentPressureUnit"></span> (<span id="currentRising"></span>)</p>
+					<p><h1>visibility:</h1> <span id="currentVisibility"></span><span id="currentVisibilityUnits"></span></p>
 				</section>
 			</section>
 		</section>
@@ -123,17 +123,24 @@
 				document.getElementById('currentTemp').innerHTML = weather.temp+'&deg;';
 
 				document.getElementById('currentHigh').innerHTML = weather.high;
+				document.getElementById('currentHighAlt').innerHTML = weather.alt.high;
+				document.getElementById('currentHighAltUnit').innerHTML = weather.alt.unit;
 				document.getElementById('currentLow').innerHTML = weather.low;
+				document.getElementById('currentLowAlt').innerHTML = weather.alt.low;
+				document.getElementById('currentLowAltUnit').innerHTML = weather.alt.unit;
 				document.getElementById('currentSunrise').innerHTML = weather.sunrise;
 				document.getElementById('currentSunset').innerHTML = weather.sunset;
 				document.getElementById('currentWindChill').innerHTML = weather.wind.chill;
 				document.getElementById('currentWindDirection').innerHTML = weather.wind.direction;
 				document.getElementById('currentWindSpeed').innerHTML = weather.wind.speed;
+				document.getElementById('currentWindSpeedUnit').innerHTML = weather.units.speed;
 				document.getElementById('currentHumidity').innerHTML = weather.humidity;
 				document.getElementById('currentHeatIndex').innerHTML = weather.heatindex;
 				document.getElementById('currentPressure').innerHTML = weather.pressure;
+				document.getElementById('currentPressureUnit').innerHTML = weather.units.pressure;
 				document.getElementById('currentRising').innerHTML = currentRising;
 				document.getElementById('currentVisibility').innerHTML = weather.visibility;
+				document.getElementById('currentVisibilityUnits').innerHTML = weather.units.distance;
 
 				document.getElementById('dayOne').innerHTML = weekday[0];
 				document.getElementById('dayTwo').innerHTML = weekday[1];
