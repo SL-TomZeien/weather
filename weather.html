@@ -14,14 +14,30 @@
 </head>
 <body>
 	<div id="weather"> <!-- this ID needed for the plugin */ -->
-		<div class="group currentWeatherContain">
+		<section class="group currentWeatherContain">
 			<div id="currentWeatherIcon"></div>
-			<div class="currentWeatherInfo">
+			<section class="currentWeatherInfo">
 				<h2 id="cityName">City</h2>
 				<h3 id="currentTemp">xx&deg;</h3>
-			</div>
-		</div>
-		<div class="forecastList">
+				<section class="extraInfo">
+					<p><h1>high:</h1> <span id="currentHigh"></span></p>
+					<p><h1>low:</h1> <span id="currentLow"></span></p>
+
+					<p><h1>sunrise:</h1> <span id="currentSunrise"></span></p>
+					<p><h1>sunset:</h1> <span id="currentSunset"></span></p>
+
+					<p><h1>wind chill:</h1> <span id="currentWindChill"></span></p>
+					<p><h1>wind direction:</h1> <span id="currentWindDirection"></span></p>
+					<p><h1>wind speed:</h1> <span id="currentWindSpeed"></span></p>
+
+					<p><h1>humidity:</h1> <span id="currentHumidity"></span></p>
+					<p><h1>heat index:</h1> <span id="currentHeatIndex"></span></p>
+					<p><h1>pressure:</h1> <span id="currentPressure"></span> (<span id="currentRising"></span>)</p>
+					<p><h1>visibility:</h1> <span id="currentVisibility"></span></p>
+				</section>
+			</section>
+		</section>
+		<section class="forecastList">
 			<div>
 				<h1 id="dayOne">tuesday</h1>
 				<h2 id="temperatureDayOne">xx&deg;/xx&deg;</h2>
@@ -47,7 +63,7 @@
 				<h2 id="temperatureDayFive">xx&deg;/xx&deg;</h2>
 				<div id="weatherIconFive" class="weatherIcon"></div>
 			</div>
-		</div>
+		</section>
 	</div>
 
     <script>
@@ -91,10 +107,33 @@
 					}
 				}
 
+				var currentRising = weather.rising; 
+				if (currentRising == 0) {
+					currentRising = "steady";
+				}
+				else if (currentRising == 1) {
+					currentRising = "rising";
+				}
+				else if (currentRising == 2) {
+					currentRising = "falling";
+				}
 
 				document.getElementById('currentWeatherIcon').innerHTML = "<img src='images/weatherIcons/"+weather.code+"'/>";
 				document.getElementById('cityName').innerHTML = weather.city;
 				document.getElementById('currentTemp').innerHTML = weather.temp+'&deg;';
+
+				document.getElementById('currentHigh').innerHTML = weather.high;
+				document.getElementById('currentLow').innerHTML = weather.low;
+				document.getElementById('currentSunrise').innerHTML = weather.sunrise;
+				document.getElementById('currentSunset').innerHTML = weather.sunset;
+				document.getElementById('currentWindChill').innerHTML = weather.wind.chill;
+				document.getElementById('currentWindDirection').innerHTML = weather.wind.direction;
+				document.getElementById('currentWindSpeed').innerHTML = weather.wind.speed;
+				document.getElementById('currentHumidity').innerHTML = weather.humidity;
+				document.getElementById('currentHeatIndex').innerHTML = weather.heatindex;
+				document.getElementById('currentPressure').innerHTML = weather.pressure;
+				document.getElementById('currentRising').innerHTML = currentRising;
+				document.getElementById('currentVisibility').innerHTML = weather.visibility;
 
 				document.getElementById('dayOne').innerHTML = weekday[0];
 				document.getElementById('dayTwo').innerHTML = weekday[1];
